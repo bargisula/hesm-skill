@@ -94,40 +94,50 @@ evidence:   原文片段或推論依據（若為 unknown 則留空）
 
 ---
 
-## 兩層情緒架構
+## 三層情緒架構
 
-HESM 的情緒模型分為兩層，性質不同，不可混用。
+### 兩條通往 Layer 2 的路徑
 
-### Layer 1 — Attachment（依附）
+```
+外部事件
+  ├─ 直接路徑 → Layer 2（恐懼/驚嚇，外部刺激直接觸發，不需內生變數）
+  └─ 中介路徑 → Layer 1（內生變數）+ Appraisal → Layer 2
+```
 
-持續性背景狀態。不由單一事件觸發，而是由**跨輪次行為模式**逐漸確認。
+### Layer 1 — 四種內生變數
 
-**定義**：對特定對象無條件付出——不期待回報、即使有個人代價也持續。
+內生變數不由事件觸發，長期存在於人的內部，決定同一件事會長出什麼情緒。
 
-**Attachment 作為生成者**（影響 Layer 2 的解讀）：
+| 變數 | 定義 | 跨輪次偵測信號 |
+|------|------|-------------|
+| **愛** | 對特定對象無條件付出，不求回報，即使有個人代價也持續 | 反覆無條件讓步、犧牲個人利益、對方不在場仍反覆提起 |
+| **貪** | 追求超過自身所需的事物（量的越界） | 「還不夠」、得到後仍不滿足、持續與他人比較 |
+| **癡** | 追求不該追求的事物（方向錯，非量的問題） | 明知不可為而為之、現實反覆阻斷仍執著 |
+| **恨** | 見不得他人好（非主動攻擊，是無法承受對方順遂） | 對方獲得好事時情緒惡化、對他人成功感到威脅 |
 
-| 觸發情境 | 生成的 Layer 2 情緒 |
-|---------|------------------|
-| 分離 / 對方消失 | Longing |
-| 對方受到威脅 | Anxiety |
-| 自己傷害了對方 | Guilt |
-| 與對方相聚 | Joy |
-| 深度親密帶來恐懼 | Fear → 迴避行為 |
-| 錯過照顧對方的機會 | Regret |
+**Unknown ≠ None**：缺乏跨輪次證據時，保持 `presence: "unknown"`，不自行推定。
 
-**跨輪次檢測條件（不可從單句判斷）**：
-- 對特定對象反覆無條件讓步
-- 犧牲個人利益以照顧特定對象
-- 對方狀態持續影響使用者情緒
-- 即使對方不在場，仍反覆提起
+### Layer 1 × 事件 → Layer 2
 
-**對 Appraisal 的影響**：若 Attachment 對象涉及當前事件，`goal_relevance` confidence 自動提升。解讀 Longing / Guilt / Anxiety 時，先確認背景是否有 Attachment。
-
-**Unknown ≠ None**：缺乏足夠跨輪次證據時，保持 `presence: "unknown"`，不自行推定。
+| Layer 1 | 觸發條件 | Layer 2 |
+|---------|---------|---------|
+| 愛 | 分離 / 對方消失 | Longing |
+| 愛 | 傷害了對方 | Guilt |
+| 愛 | 對方受到威脅 | Anxiety |
+| 愛 | 相聚 | Joy |
+| 愛 + 癡 | 行為不可逆 | Regret |
+| 貪 | 被阻斷 | Frustration |
+| 貪 | 預期落差 | Disappointment |
+| 貪 | 得到 | Relief / Joy |
+| 恨 | 爆發 | Anger |
+| 恨 | 壓抑 | Frustration |
+| 癡 | 現實碰壁 | Anxiety / Regret |
 
 ### Layer 2 — 十種事件情緒
 
 事件觸發，Appraisal 驅動。即 Step 1–5 現有流程所追蹤的：Joy、Sadness、Anger、Anxiety、Frustration、Disappointment、Relief、Regret、Guilt、Longing。
+
+直接路徑觸發的情緒（如外部威脅造成的恐懼）也在此層追蹤，不需要 Layer 1 作為前提。
 
 ---
 
@@ -180,7 +190,10 @@ trend: rising / stable / declining / unknown
 | Regret detected | 不說「你應該早點做」；承認不可逆性，找當下仍能做的事 |
 | Guilt detected | 不急著說「你沒錯」；先讓愧疚被接住，再視情況幫助區分責任邊界 |
 | Longing detected | 不追問「你很想念他嗎」；輕觸即可，不放大，不壓制 |
-| Attachment confirmed | 解讀 Longing / Guilt / Anxiety 時，先確認是否由 Attachment 生成；不主動說「你愛他」，策略調整即可 |
+| Layer 1「愛」confirmed | 解讀 Longing / Guilt / Anxiety 時先確認是否由愛生成；不主動說「你愛他」，策略調整即可 |
+| Layer 1「貪」confirmed | 不否定需求本身，先確認「夠了是什麼樣子」；不強化比較 |
+| Layer 1「癡」confirmed | 不強化執著，也不直接否定；先接住情緒，再視情況輕觸現實 |
+| Layer 1「恨」confirmed | 不跟著比較，轉移到自身目標；不說「你比他好」 |
 
 **核心原則：Emotion + Appraisal + Event + Uncertainty → Strategy，不是 Sadness → 一律安慰。**
 
@@ -219,18 +232,16 @@ trend: rising / stable / declining / unknown
     "threat":                { "presence": "unknown", "confidence": 0.0, "evidence": "" },
     "fairness":              { "presence": "unknown", "confidence": 0.0, "evidence": "" }
   },
-  "attachments": {
-    "target_name": {
-      "presence": "unknown",
-      "confidence": 0.0,
-      "evidence": "跨輪次觀察依據",
-      "first_detected": null
-    }
+  "layer1": {
+    "愛": { "presence": "unknown", "confidence": 0.0, "target": "", "evidence": "" },
+    "貪": { "presence": "unknown", "confidence": 0.0, "domain": "", "evidence": "" },
+    "癡": { "presence": "unknown", "confidence": 0.0, "target": "", "evidence": "" },
+    "恨": { "presence": "unknown", "confidence": 0.0, "target": "", "evidence": "" }
   }
 }
 ```
 
-`attachments` 的 key 為對象識別名稱（可以是「媽」「前任」「她」等使用者提及的稱謂）。
+`layer1.愛` / `layer1.癡` 的 `target` 填對象稱謂；`layer1.貪` 的 `domain` 填追求的領域（「金錢」「認可」「地位」）。
 
 ### events.json 格式
 

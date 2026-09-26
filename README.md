@@ -16,4 +16,4 @@ Human Emotion State Estimation — 掛載在 LLM 上的情緒追蹤框架。
 
 ## 版本
 
-v1.2 — 兩層情緒架構（新增 Layer 1 Attachment / Love）、state.json 加入 attachments 欄位
+v1.3 — 三層情緒架構：Layer 1 改為四種內生變數（愛/貪/癡/恨），state.json 加入 layer1 欄位

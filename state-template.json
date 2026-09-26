@@ -24,5 +24,10 @@
     "threat":                { "presence": "unknown", "confidence": 0.0, "evidence": "" },
     "fairness":              { "presence": "unknown", "confidence": 0.0, "evidence": "" }
   },
-  "attachments": {}
+  "layer1": {
+    "愛": { "presence": "unknown", "confidence": 0.0, "target": "", "evidence": "" },
+    "貪": { "presence": "unknown", "confidence": 0.0, "domain": "", "evidence": "" },
+    "癡": { "presence": "unknown", "confidence": 0.0, "target": "", "evidence": "" },
+    "恨": { "presence": "unknown", "confidence": 0.0, "target": "", "evidence": "" }
+  }
 }
