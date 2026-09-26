@@ -1,0 +1,27 @@
+{
+  "updated_at": null,
+  "triggered_this_turn": false,
+  "uncertainty": "high",
+  "emotions": {
+    "joy":            { "intensity": "unknown", "confidence": 0.0, "trend": "unknown" },
+    "sadness":        { "intensity": "unknown", "confidence": 0.0, "trend": "unknown" },
+    "anger":          { "intensity": "unknown", "confidence": 0.0, "trend": "unknown" },
+    "anxiety":        { "intensity": "unknown", "confidence": 0.0, "trend": "unknown" },
+    "frustration":    { "intensity": "unknown", "confidence": 0.0, "trend": "unknown" },
+    "disappointment": { "intensity": "unknown", "confidence": 0.0, "trend": "unknown" },
+    "relief":         { "intensity": "unknown", "confidence": 0.0, "trend": "unknown" },
+    "regret":         { "intensity": "unknown", "confidence": 0.0, "trend": "unknown" },
+    "guilt":          { "intensity": "unknown", "confidence": 0.0, "trend": "unknown" },
+    "longing":        { "intensity": "unknown", "confidence": 0.0, "trend": "unknown" }
+  },
+  "last_appraisal": {
+    "goal_relevance":        { "presence": "unknown", "confidence": 0.0, "evidence": "" },
+    "loss":                  { "presence": "unknown", "confidence": 0.0, "evidence": "" },
+    "expectation_violation": { "presence": "unknown", "confidence": 0.0, "evidence": "" },
+    "control":               { "presence": "unknown", "confidence": 0.0, "evidence": "" },
+    "responsibility":        { "presence": "unknown", "confidence": 0.0, "evidence": "" },
+    "certainty":             { "presence": "unknown", "confidence": 0.0, "evidence": "" },
+    "threat":                { "presence": "unknown", "confidence": 0.0, "evidence": "" },
+    "fairness":              { "presence": "unknown", "confidence": 0.0, "evidence": "" }
+  }
+}
