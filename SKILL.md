@@ -94,6 +94,43 @@ evidence:   原文片段或推論依據（若為 unknown 則留空）
 
 ---
 
+## 兩層情緒架構
+
+HESM 的情緒模型分為兩層，性質不同，不可混用。
+
+### Layer 1 — Attachment（依附）
+
+持續性背景狀態。不由單一事件觸發，而是由**跨輪次行為模式**逐漸確認。
+
+**定義**：對特定對象無條件付出——不期待回報、即使有個人代價也持續。
+
+**Attachment 作為生成者**（影響 Layer 2 的解讀）：
+
+| 觸發情境 | 生成的 Layer 2 情緒 |
+|---------|------------------|
+| 分離 / 對方消失 | Longing |
+| 對方受到威脅 | Anxiety |
+| 自己傷害了對方 | Guilt |
+| 與對方相聚 | Joy |
+| 深度親密帶來恐懼 | Fear → 迴避行為 |
+| 錯過照顧對方的機會 | Regret |
+
+**跨輪次檢測條件（不可從單句判斷）**：
+- 對特定對象反覆無條件讓步
+- 犧牲個人利益以照顧特定對象
+- 對方狀態持續影響使用者情緒
+- 即使對方不在場，仍反覆提起
+
+**對 Appraisal 的影響**：若 Attachment 對象涉及當前事件，`goal_relevance` confidence 自動提升。解讀 Longing / Guilt / Anxiety 時，先確認背景是否有 Attachment。
+
+**Unknown ≠ None**：缺乏足夠跨輪次證據時，保持 `presence: "unknown"`，不自行推定。
+
+### Layer 2 — 十種事件情緒
+
+事件觸發，Appraisal 驅動。即 Step 1–5 現有流程所追蹤的：Joy、Sadness、Anger、Anxiety、Frustration、Disappointment、Relief、Regret、Guilt、Longing。
+
+---
+
 ## Step 5 — State Update
 
 公式：
@@ -143,6 +180,7 @@ trend: rising / stable / declining / unknown
 | Regret detected | 不說「你應該早點做」；承認不可逆性，找當下仍能做的事 |
 | Guilt detected | 不急著說「你沒錯」；先讓愧疚被接住，再視情況幫助區分責任邊界 |
 | Longing detected | 不追問「你很想念他嗎」；輕觸即可，不放大，不壓制 |
+| Attachment confirmed | 解讀 Longing / Guilt / Anxiety 時，先確認是否由 Attachment 生成；不主動說「你愛他」，策略調整即可 |
 
 **核心原則：Emotion + Appraisal + Event + Uncertainty → Strategy，不是 Sadness → 一律安慰。**
 
@@ -180,9 +218,19 @@ trend: rising / stable / declining / unknown
     "certainty":             { "presence": "unknown", "confidence": 0.0, "evidence": "" },
     "threat":                { "presence": "unknown", "confidence": 0.0, "evidence": "" },
     "fairness":              { "presence": "unknown", "confidence": 0.0, "evidence": "" }
+  },
+  "attachments": {
+    "target_name": {
+      "presence": "unknown",
+      "confidence": 0.0,
+      "evidence": "跨輪次觀察依據",
+      "first_detected": null
+    }
   }
 }
 ```
+
+`attachments` 的 key 為對象識別名稱（可以是「媽」「前任」「她」等使用者提及的稱謂）。
 
 ### events.json 格式
 

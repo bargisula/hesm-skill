@@ -16,4 +16,4 @@ Human Emotion State Estimation — 掛載在 LLM 上的情緒追蹤框架。
 
 ## 版本
 
-v1.1 — 10 種情緒（新增 Regret / Guilt / Longing）、5 種觸發條件（新增 Indirect Social Check）
+v1.2 — 兩層情緒架構（新增 Layer 1 Attachment / Love）、state.json 加入 attachments 欄位

@@ -23,5 +23,6 @@
     "certainty":             { "presence": "unknown", "confidence": 0.0, "evidence": "" },
     "threat":                { "presence": "unknown", "confidence": 0.0, "evidence": "" },
     "fairness":              { "presence": "unknown", "confidence": 0.0, "evidence": "" }
-  }
+  },
+  "attachments": {}
 }
